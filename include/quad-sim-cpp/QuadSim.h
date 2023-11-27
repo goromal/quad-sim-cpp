@@ -3,14 +3,17 @@
 #include <Eigen/Core>
 #include <string>
 #include <iostream>
-
-using namespace Eigen;
+#include <yaml-cpp/yaml.h>
 
 namespace quadsim
 {
 
 struct QuadSimConfig
 {
+    QuadSimConfig() {}
+
+    QuadSimConfig(const std::string& configFilePath);
+
     double px0 = 0;
     double py0 = 0;
     double pz0 = 0;
@@ -29,7 +32,7 @@ struct QuadSimConfig
     double wz0 = 0;
 };
 
-std::ostream& operator<<(std::ostream& os, const QuadSimConfig& cfg)
+inline std::ostream& operator<<(std::ostream& os, const QuadSimConfig& cfg)
 {
     os << "x0:" << std::endl
        << "\tp: [" << cfg.px0 << ", " << cfg.py0 << ", " << cfg.pz0 << "]\n\tq: [" << cfg.qw0 << ", " << cfg.qx0 << ", "
