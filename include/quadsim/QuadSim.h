@@ -11,7 +11,6 @@ namespace quadsim
 struct QuadSimConfig
 {
     QuadSimConfig() {}
-
     QuadSimConfig(const std::string& configFilePath);
 
     double px0 = 0;
