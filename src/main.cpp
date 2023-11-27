@@ -1,7 +1,7 @@
 #include <boost/program_options.hpp>
 #include <iostream>
 
-#include "../include/quad-sim-cpp/QuadSim.h"
+#include "quadsim/QuadSim.h"
 
 int main(int argc, char* argv[])
 {

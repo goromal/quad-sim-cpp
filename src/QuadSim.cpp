@@ -1,4 +1,4 @@
-#include "../include/quad-sim-cpp/QuadSim.h"
+#include "quadsim/QuadSim.h"
 
 namespace quadsim
 {
