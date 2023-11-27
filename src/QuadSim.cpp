@@ -1,4 +1,4 @@
-#include "example/HelloWorld.h"
+#include "quad-sim-cpp/QuadSim.h"
 
 std::string getHelloWorld(const std::string& name, const bool& exclaim)
 {

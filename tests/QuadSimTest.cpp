@@ -1,5 +1,5 @@
 #include <boost/test/unit_test.hpp>
-#include "example/HelloWorld.h"
+#include "quad-sim-cpp/QuadSim.h"
 
 BOOST_AUTO_TEST_SUITE(TestExample)
 

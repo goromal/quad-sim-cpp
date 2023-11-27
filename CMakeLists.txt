@@ -9,25 +9,28 @@ option(BUILD_TESTS "Build Tests" ON)
 
 find_package(Eigen3 REQUIRED NO_MODULE)
 find_package(Boost COMPONENTS program_options REQUIRED)
+find_package(manif-geom-cpp REQUIRED)
+find_package(signals-cpp REQUIRED)
+find_package(yaml-cpp REQUIRED)
 
 add_library(${PROJ_NAME}
-  src/HelloWorld.cpp
+  src/QuadSim.cpp
 )
 target_include_directories(${PROJ_NAME}
   PUBLIC
   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
 )
-target_link_libraries(${PROJ_NAME} PUBLIC Eigen3::Eigen)
+target_link_libraries(${PROJ_NAME} PUBLIC Eigen3::Eigen manif-geom-cpp signals-cpp yaml-cpp)
 
-add_executable(${PROJ_NAME}_main
+add_executable(quadsimd
   src/main.cpp
 )
-target_include_directories(${PROJ_NAME}_main
+target_include_directories(quadsimd
   PRIVATE
   ${Boost_INCLUDE_DIR}
 )
-target_link_libraries(${PROJ_NAME}_main
+target_link_libraries(quadsimd
   ${PROJ_NAME}
   ${Boost_LIBRARIES}
 )
@@ -36,7 +39,7 @@ if (BUILD_TESTS)
     set(UNIT_TEST unit-tests)
     add_executable(${UNIT_TEST}
         tests/MainTest.cpp
-        tests/ExampleTest.cpp
+        tests/QuadSimTest.cpp
     )
     target_link_libraries(${UNIT_TEST}
         ${PROJ_NAME}
@@ -69,7 +72,7 @@ install(TARGETS ${PROJ_NAME}
     BUNDLE DESTINATION bin COMPONENT Runtime
 )
 
-install(TARGETS ${PROJ_NAME}_main
+install(TARGETS quadsimd
     EXPORT ${PROJ_NAME}Targets
     LIBRARY DESTINATION lib COMPONENT Runtime
     ARCHIVE DESTINATION lib COMPONENT Development
