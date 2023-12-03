@@ -61,4 +61,9 @@ QuadSimConfig::QuadSimConfig(const std::string& configFilePath)
     }
 }
 
+QuadSim::QuadSim(const QuadSimConfig& cfg) : mCfg(cfg)
+{
+    // ^^^^ TODO initialize model
+}
+
 } // end namespace quadsim

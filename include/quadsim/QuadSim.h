@@ -43,8 +43,8 @@ inline std::ostream& operator<<(std::ostream& os, const QuadSimConfig& cfg)
 class QuadSim
 {
 public:
-    QuadSim() : mCfg(QuadSimConfig()) {}
-    QuadSim(const QuadSimConfig& cfg) : mCfg(cfg) {}
+    QuadSim() : QuadSim(QuadSimConfig()) {}
+    QuadSim(const QuadSimConfig& cfg);
 
 private:
     QuadSimConfig mCfg;
