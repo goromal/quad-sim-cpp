@@ -93,3 +93,5 @@ install(FILES "${PROJECT_BINARY_DIR}/${PROJ_NAME}ConfigVersion.cmake"
               "${PROJECT_BINARY_DIR}/${PROJ_NAME}Config.cmake"
         DESTINATION lib/cmake/${PROJ_NAME})
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
+
+configure_file(${PROJECT_SOURCE_DIR}/tests/data/test.yaml test.yaml)

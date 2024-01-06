@@ -3,14 +3,19 @@
 #include <Eigen/Core>
 #include <string>
 #include <iostream>
-
-using namespace Eigen;
+#include <yaml-cpp/yaml.h>
+#include <signals/Signals.h>
 
 namespace quadsim
 {
 
 struct QuadSimConfig
 {
+    QuadSimConfig() {}
+    QuadSimConfig(const std::string& configFilePath);
+
+    RigidBodyParams3D inertialParams;
+
     double px0 = 0;
     double py0 = 0;
     double pz0 = 0;
@@ -29,7 +34,7 @@ struct QuadSimConfig
     double wz0 = 0;
 };
 
-std::ostream& operator<<(std::ostream& os, const QuadSimConfig& cfg)
+inline std::ostream& operator<<(std::ostream& os, const QuadSimConfig& cfg)
 {
     os << "x0:" << std::endl
        << "\tp: [" << cfg.px0 << ", " << cfg.py0 << ", " << cfg.pz0 << "]\n\tq: [" << cfg.qw0 << ", " << cfg.qx0 << ", "
@@ -41,11 +46,12 @@ std::ostream& operator<<(std::ostream& os, const QuadSimConfig& cfg)
 class QuadSim
 {
 public:
-    QuadSim() : mCfg(QuadSimConfig()) {}
-    QuadSim(const QuadSimConfig& cfg) : mCfg(cfg) {}
+    QuadSim() : QuadSim(QuadSimConfig()) {}
+    QuadSim(const QuadSimConfig& cfg);
 
 private:
-    QuadSimConfig mCfg;
+    QuadSimConfig        mCfg;
+    RigidBody6DOFSystemd mSys;
 };
 
 } // end namespace quadsim
