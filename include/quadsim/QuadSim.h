@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <yaml-cpp/yaml.h>
+#include <signals/Signals.h>
 
 namespace quadsim
 {
@@ -12,6 +13,8 @@ struct QuadSimConfig
 {
     QuadSimConfig() {}
     QuadSimConfig(const std::string& configFilePath);
+
+    RigidBodyParams3D inertialParams;
 
     double px0 = 0;
     double py0 = 0;
@@ -47,7 +50,8 @@ public:
     QuadSim(const QuadSimConfig& cfg);
 
 private:
-    QuadSimConfig mCfg;
+    QuadSimConfig        mCfg;
+    RigidBody6DOFSystemd mSys;
 };
 
 } // end namespace quadsim
